@@ -10,18 +10,17 @@ import axios from 'axios'
 import './App.css'
 
 function App() {
-  // const [code, setCode] = useState('')
   const [code, setCode] = useState(`function greet() {
     console.log("Hello, world!");
   }`);
 
   const [review, setReview] = useState('');
-  const [loader , setLoader] = useState(false);
+  const [loader, setLoader] = useState(false);
 
-  async function reviewCode(){
+  async function reviewCode() {
     setLoader(true);
     try {
-      const response = await axios.post('https://codesensei-ipp9.onrender.com/api/get-review',{code});
+      const response = await axios.post('https://codesensei-ipp9.onrender.com/api/get-review', { code });
       setReview(response.data);
     } catch (error) {
       setReview("❌ Failed to get review.");
@@ -30,42 +29,35 @@ function App() {
   }
 
   return (
-    <main className='flex p-4 bg-gray-700 gap-2 flex-col md:flex-row'>
-      <div className='left w-1/2 rounded p-2 flex flex-col justify-between bg-[#2d2d2d]'>
+    <main className='h-screen flex flex-col md:flex-row p-4 bg-gray-700 gap-2'>
+      <div className='left w-full md:w-1/2 rounded p-2 flex flex-col justify-between bg-[#2d2d2d] max-h-[50vh] md:max-h-full'>
         <div className='code grow overflow-auto'>
           <Editor
             value={code}
             onValueChange={code => setCode(code)}
             highlight={code => prism.highlight(code, prism.languages.javascript, 'javascript')}
             padding={10}
-            className='text-2xl rounded-lg w-full h-full text-white font-mono  border-red-500 '
+            className='text-base md:text-xl rounded-lg w-full h-full text-white font-mono border-red-500'
           />
         </div>
         <div
           onClick={reviewCode}
-          className='review w-fit h-fit pr-2 pl-2 text-xl self-end rounded cursor-pointer select-none bg-blue-300 hover:bg-blue-500'>
+          className='review mt-2 w-fit h-fit px-4 py-2 text-lg self-end rounded cursor-pointer select-none bg-blue-300 hover:bg-blue-500'>
           Review
         </div>
       </div>
-      <div className='right w-1/2 bg-black rounded p-2 text-white overflow-y-auto'>
-        
-        {
-          loader ? (
+      <div className='right w-full md:w-1/2 bg-black rounded p-2 text-white overflow-auto flex items-center justify-center md:items-start md:justify-start'>
+        {loader ? (
           <div className="flex justify-center items-center h-full w-full">
-            <div className="animate-spin rounded-full text-9xl">
-                ⏳
-            </div>
+            <div className="animate-spin text-6xl md:text-9xl">⏳</div>
           </div>
-
-          ) : (
-            <div>
-              <Marked rehypePlugins={[rehypeHighlight]}>
-                {review}
-              </Marked>
-            </div>
-          )
-        }
-
+        ) : (
+          <div className='w-full'>
+            <Marked rehypePlugins={[rehypeHighlight]}>
+              {review}
+            </Marked>
+          </div>
+        )}
       </div>
     </main>
   )
