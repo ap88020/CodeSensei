@@ -3,7 +3,9 @@ import router from './routes/ai.routes.js';
 import cors from 'cors'
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://fastidious-entremet-f0642d.netlify.app',
+}));
 
 app.use(express.json()); 
 app.use('/api', router);

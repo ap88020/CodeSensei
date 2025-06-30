@@ -21,7 +21,7 @@ function App() {
   async function reviewCode(){
     setLoader(true);
     try {
-      const response = await axios.post('http://localhost:3000/api/get-review',{code});
+      const response = await axios.post('https://codesensei-ipp9.onrender.com/api/get-review',{code});
       setReview(response.data);
     } catch (error) {
       setReview("❌ Failed to get review.");
