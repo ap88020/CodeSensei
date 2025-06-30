@@ -30,7 +30,7 @@ function App() {
   }
 
   return (
-    <main className='h-screen flex p-4 bg-gray-700 gap-2'>
+    <main className='h-screen flex p-4 bg-gray-700 gap-2 flex-col md:flex-row'>
       <div className='left w-1/2 rounded p-2 flex flex-col justify-between bg-[#2d2d2d]'>
         <div className='code grow overflow-auto'>
           <Editor
