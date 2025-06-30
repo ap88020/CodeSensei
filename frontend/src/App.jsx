@@ -16,6 +16,7 @@ function App() {
 
   const [review, setReview] = useState('');
   const [loader, setLoader] = useState(false);
+  
 
   async function reviewCode() {
     setLoader(true);
@@ -46,7 +47,8 @@ function App() {
           Review
         </div>
       </div>
-      <div className='right w-full h-48 md:h-full bg-black rounded p-2 text-white overflow-auto flex items-center justify-center md:items-start md:justify-start'>
+      <div className='right w-full h-96 md:h-full bg-black rounded p-2 text-white overflow-auto flex items-center justify-center md:items-start md:justify-start'>
+        Review of code
         {loader ? (
           <div className="flex justify-center items-center h-full w-full">
             <div className="animate-spin text-6xl md:text-9xl">⏳</div>
