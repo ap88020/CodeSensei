@@ -30,7 +30,7 @@ function App() {
 
   return (
     <main className='h-screen flex flex-col md:flex-row p-4 bg-gray-700 gap-2'>
-      <div className='left w-full md:w-1/2 rounded p-2 flex flex-col justify-between bg-[#2d2d2d] max-h-[50vh] md:max-h-full'>
+      <div className='left w-full rounded p-2 flex flex-col justify-between bg-[#2d2d2d] md:h-full overflow-auto'>
         <div className='code grow overflow-auto'>
           <Editor
             value={code}
@@ -46,7 +46,7 @@ function App() {
           Review
         </div>
       </div>
-      <div className='right w-full md:w-1/2 bg-black rounded p-2 text-white overflow-auto flex items-center justify-center md:items-start md:justify-start'>
+      <div className='right w-full h-11 md:h-full bg-black rounded p-2 text-white overflow-auto flex items-center justify-center md:items-start md:justify-start'>
         {loader ? (
           <div className="flex justify-center items-center h-full w-full">
             <div className="animate-spin text-6xl md:text-9xl">⏳</div>
